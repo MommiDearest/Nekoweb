@@ -93,7 +93,7 @@ Since nothing is actually happening right now, the code that's in there doesn't 
 
 Here's where you have a bit more agency. Inside each folder there's a Cloudflare Worker code file with the relevant code for each section. There is some setup stuff we're going to do now though, so copy and paste this in and edit the URL with your Nekoweb one: 
 
-```json
+```js
 // ============================================================
 // CLOUDFLARE WORKER
 // everyone needs this part - do not delete this section!
@@ -180,3 +180,142 @@ To be clear, the names of each secret should be EXACTLY as they're written here,
 Ok, so you have your secrets, your Worker, and your GitHub all set up you can FINALLY get to your Nekoweb page and start messing around with each module!
 
 ---
+## Actually Using the Modules
+
+So the first thing you want to set up on your Nekoweb page is the config.js Once you do one any page that uses a module make sure you call it with `<script src="config.js"></script>`
+I'll go ahead and explain the file a bit: 
+
+```js
+const CONFIG = {
+    workerUrl: "https://YOUR-WORKER.URL-HERE.workers.dev",
+    emojis: {
+        // if you want your guestbook to have emotes, here is where you add them, use these as examples
+        "\\[wave\\]": "path/to/your/wave.gif",
+        "\\[heart\\]": "path/to/your/heart.gif",
+    },
+    drawboxColors: [
+        "#000000", // black
+        "#ffffff", // white
+        "#ff6b6b", // red
+        "#ffa94d", // orange
+        "#ffd43b", // yellow
+        "#69db7c", // green
+        "#4dabf7", // blue
+        "#da77f2", // purple
+        "#f783ac", // pink
+        "#868e96", // grey
+        //add your own hex colors here and customize them
+    ]
+}
+```
+You'll want to set up the config with your Worker URL and add it to your files. The palette is for if you're using the drawbox it's just a basic palette, you can customize it any way you want. The emojis are for if you want to use emotes in your guestbook!
+
+As for the modules, each one has a `.js` and a `.css` file to go with it. Edit the CSS file to fit your site's aesthetic, the JS should have everything set up so you just make a div with the relevant id. 
+
+Here is an example HTML with each module set up:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my site</title>
+    <!-- make sure to add the css for the modules you are using -->
+    <!-- delete the ones you dont need -->
+    <link rel="stylesheet" href="blog/blog.css">
+    <link rel="stylesheet" href="guestbook/guestbook.css">
+    <link rel="stylesheet" href="drawbox/drawbox.css">
+</head>
+
+<body>
+
+    <!-- ============================================================ -->
+    <!-- BLOG MODULE                                                   -->
+    <!-- this is actuall ALL you need for the blog to show up          -->
+    <!-- ============================================================ -->
+    <div id="blog-tag-filter" class="blog-tag-filter-strip"></div>
+    <div id="blog-posts"></div>
+
+
+    <!-- ============================================================ -->
+    <!-- GUESTBOOK MODULE                                              -->
+    <!-- guestbook needa  little bit more in the divs,                 -->
+    <!--  but overall is pretty compact                                -->
+    <!-- ============================================================ -->
+    <div id="guestbook-messages"></div>
+    <input id="guest-name" type="text" placeholder="your name (optional)">
+    <textarea id="guest-msg" placeholder="leave a message!"></textarea>
+    <!-- do not remove the honeypot, it helps prevent spam! -->
+    <input id="honeypot" type="text" style="display:none;" tabindex="-1" autocomplete="off">
+    <p id="guestbook-status"></p>
+    <button id="send-btn">send</button>
+
+
+    <!-- ============================================================ -->
+    <!-- DRAWBOX MODULE                                                -->
+    <!-- this is divided into a few parts so you have more             -->
+     <!-- control over how you want it set up                          -->
+    <!-- ============================================================ -->
+
+    <!-- colour palette -->
+    <div id="swatch-grid"></div>
+
+    <!-- rgb sliders -->
+    <div>
+        <label>R</label>
+        <input id="r-slider" type="range" min="0" max="255" value="0">
+        <span id="r-val">0</span>
+    </div>
+    <div>
+        <label>G</label>
+        <input id="g-slider" type="range" min="0" max="255" value="0">
+        <span id="g-val">0</span>
+    </div>
+    <div>
+        <label>B</label>
+        <input id="b-slider" type="range" min="0" max="255" value="0">
+        <span id="b-val">0</span>
+    </div>
+
+    <!-- colour preview -->
+    <div id="colour-preview"></div>
+
+    <!-- the canvas -->
+    <canvas id="draw-canvas" width="400" height="400"></canvas>
+
+    <!-- drawing tools -->
+    <input id="draw-size" type="range" min="1" max="30" value="5">
+    <button id="draw-eraser">Eraser</button>
+    <button id="draw-clear">Clear</button>
+
+    <!-- submission stuff -->
+    <input id="draw-author" type="text" placeholder="your name (optional)">
+    <p id="draw-status"></p>
+    <button id="draw-submit">Submit Drawing</button>
+
+    <!-- gallery -->
+    <div id="drawings-grid"></div>
+
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                       -->
+    <!-- config.js HAS to be called first!!!!                          -->
+    <!-- ============================================================ -->
+    <script src="config.js"></script>
+
+    <!-- add only the modules you are using, delete any other one -->
+    <script src="blog/blog.js"></script>
+    <script src="guestbook/guestbook.js"></script>
+    <script src="drawbox/drawbox.js"></script>
+
+    <!-- this will start each module, so on any page you want to use them -->
+    <!-- you ahve to actually initialize them -->
+    <script>
+        initBlog();
+        initGuestbook();
+        initDrawbox();
+    </script>
+</body>
+</html>
+```
