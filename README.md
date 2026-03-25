@@ -1,7 +1,7 @@
 # Cephy's Nekoweb Modules
 Here is a collection of modules for Nekoweb, so far there's a guestbook, a drawbox, and a blog. The modules use GitHub and Cloudflare for security. Your data lives in your own GitHub repo, and your Cloudflare Worker uses your GitHub token to ferry the info between your site and GitHub. There are a few security features built in (due to my own experience of being harassed) so you can limit messages, their frequency, have images manually approved, and a few extra things to help moderate the content.
 
-Also It's really cheesy but I named it CephyOS since thats what my site it 'running', speaking of you can find the modules  in use here: https://picoglobe.nekoweb.org/Cephy OS/test.html
+Also It's really cheesy but I named it CephyOS since thats what my site it 'running', speaking of you can find the modules  in use here: https://picoglobe.nekoweb.org/CephyOS/test.html
 
 ---
 
