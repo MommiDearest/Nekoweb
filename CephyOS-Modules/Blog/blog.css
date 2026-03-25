@@ -1,0 +1,87 @@
+/* ======BLOG====== */
+/*this is the card that will */
+/* show up when you add the blog div and will hold your post */
+.blog-post-card {
+    display: grid;
+    gap: 8px;
+    padding: 7px 8px;
+    background: #fff;
+    border-bottom: 1px solid #000000;
+    
+  }
+
+  /* mostly self explanatory titles */
+  .blog-post-title {
+    padding: 4px 8px;
+    font-size: 11px;
+    color: #636ead;
+    border-bottom: 1px solid #000000;
+    font-weight: bold;
+  }
+  .blog-post-date {
+    font-size: 9px;
+    color: #888;
+    margin-bottom: 4px;
+  }
+
+  /* this will cut your post off allowing people se see a 'perview' mess with max height to be able to change it */
+  .blog-post-preview {
+    font-size: 10px;
+    line-height: 1.4;
+    max-height: 3em;
+    overflow: hidden;
+    color: #444;
+    margin-bottom: 3px;
+  }
+  /* this is the full post, right now the javascript toggles the full post inline, so it jsut expands */
+  .blog-post-full {
+    font-size: 10px;
+    line-height: 1.4;
+    overflow: auto;
+    color: #444;
+    margin-bottom: 3px;
+  }
+  /* and this is the button tht swaps between full and preview */
+  .blog-read-more {
+    background: #636ead;
+    color: #fcfbff ;
+    font-weight: normal;
+    border: 1px solid #000000;
+  }
+  .blog-read-more:hover {
+    background: #636ead;
+  }
+  
+  .blog-tag-filter-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 5px 8px 4px;
+    border-bottom: 1px solid #000000;
+  }
+  .blog-post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin-top: 3px;
+  }
+  
+  /* i was hungry, these are the tag chips (get it? potato! chips! im funny i swear) */
+  /* anyway your #tags and how they look cna change here */
+  .blog-tag-potato {
+    display: inline-block;
+    color: #636ead;
+    font-size: 10px;
+    cursor: pointer;
+    line-height: 1.6;
+  }
+  .blog-tag-potato:hover {
+    color: #4a5a8a;
+    text-decoration: underline;
+  }
+/* the active tag selected to people can filter your posts */
+  .blog-tag-potato.active {
+    color: #557f9b;
+    font-weight: bold;
+  }
+  

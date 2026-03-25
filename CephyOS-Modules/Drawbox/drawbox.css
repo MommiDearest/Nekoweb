@@ -1,0 +1,89 @@
+/* drawbox module styles */
+
+/* the drawing canvas - change width/height to resize the drawing area */
+#draw-canvas {
+    border: 1px solid #000;
+    cursor: crosshair;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+}
+
+/* the colour palette container */
+#swatch-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 8px 0;
+}
+
+/* individual colour swatches */
+.swatch {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+/* current swatch */
+.swatch.active {
+    border: 2px solid #fff;
+    outline: 1px solid #000;
+}
+
+/* colour preview box in case you wanna make it pretty*/
+#colour-preview {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #000;
+    display: inline-block;
+}
+
+/* the gallery adapt it to whatever palette youre using */
+#drawings-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* this is the items inside the gallery */
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* these are the actual images, so if you want a pretty border here is where you go */
+.gallery-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.gallery-item img:hover {
+    opacity: 0.8;
+}
+
+/* author label under each drawing, or display:none if you dont wnat it */
+.gallery-author {
+    font-size: 10px;
+    color: #666;
+    margin-top: 3px;
+}
+
+/* status message after submitting */
+#draw-status {
+    font-size: 11px;
+    min-height: 14px;
+    margin-top: 4px;
+}
+
+/* rgb sliders */
+#r-slider { accent-color: #ff6b6b; }
+#g-slider { accent-color: #6bff6b; }
+#b-slider { accent-color: #6b6bff; }

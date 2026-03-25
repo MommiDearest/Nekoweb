@@ -1,0 +1,48 @@
+/* this is for each individual message */
+.guestbook-entry {
+    padding: 8px 10px;
+    border-bottom: 1px dotted #c4bce8;
+    font-size: 11px;
+    color: #222;
+}
+
+/* the date*/
+.guestbook-date {
+    font-size: 9px;
+    color: #888;
+}
+
+/* feedback text shown after submitting, also used for errors */
+.guestbook-status {
+    font-size: 10px;
+    color: #5a9e7a;
+    padding: 4px 0;
+    min-height: 14px;
+}
+
+/* the scrollable messages area this is where ALL of your messages will live */
+#guestbook-messages {
+    overflow-y: auto;
+    height: 300px;
+    border: 1px solid #c4bce8;
+    padding: 4px;
+}
+
+/* name and message are the same, but you can also style them individually im a bit lazy */
+#guest-name,
+#guest-msg {
+    width: 100%;
+    font-size: 11px;
+    padding: 6px;
+    border: 1px solid #c4bce8;
+    color: #222;
+    box-sizing: border-box;
+    margin-bottom: 6px;
+}
+
+/* submit button */
+#send-btn {
+    cursor: pointer;
+    padding: 6px 12px;
+    font-size: 11px;
+}

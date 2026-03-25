@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- so use this file as both an example and a check to see if everything connected correctly -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my site</title>
+    <!-- make sure to add the css for the modules you are using -->
+    <!-- delete the ones you dont need -->
+    <link rel="stylesheet" href="blog/blog.css">
+    <link rel="stylesheet" href="guestbook/guestbook.css">
+    <link rel="stylesheet" href="drawbox/drawbox.css">
+    <!-- this is jsut so the page loads fine in my testing environment- feel free to erase all of this -->
+    <style>
+        /* just some stuff so the page looks mildy ok */
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #e8e4f0;
+            color: #222;
+        }
+
+        h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 6px;
+            margin-top: 40px;
+        }
+        /* these are kind of the basic way to set these up, obviously you can edit these as you see fit */
+        /* guestbook form layout */
+        #guest-name,
+        #guest-msg {
+            display: block;
+            width: 100%;
+            margin-bottom: 8px;
+            box-sizing: border-box;
+            padding: 6px;
+            font-family: sans-serif;
+            font-size: 13px;
+            border: 1px solid #ccc;
+        }
+
+        #guest-msg {
+            height: 80px;
+            resize: vertical;
+        }
+
+        /* drawbox layout */
+        .drawbox-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 8px 0;
+        }
+
+        .slider-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        button {
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================ -->
+    <!-- BLOG MODULE                                                   -->
+    <!-- this is actuall ALL you need for the blog to show up          -->
+    <!-- ============================================================ -->
+    <div id="blog-tag-filter" class="blog-tag-filter-strip"></div>
+    <div id="blog-posts"></div>
+
+
+    <!-- ============================================================ -->
+    <!-- GUESTBOOK MODULE                                              -->
+    <!-- guestbook needa  little bit more in the divs,                 -->
+    <!--  but overall is pretty compact                                -->
+    <!-- ============================================================ -->
+    <div id="guestbook-messages"></div>
+    <input id="guest-name" type="text" placeholder="your name (optional)">
+    <textarea id="guest-msg" placeholder="leave a message!"></textarea>
+    <!-- do not remove the honeypot, it helps prevent spam, seriously, this is an -->
+    <!--invisible box that, if a bot is trying to input stuff, it has a chance to get stuck here -->
+    <!-- this was added after i got attacked, maybe it helped? i still kept it along with other safety things -->
+    <input id="honeypot" type="text" style="display:none;" tabindex="-1" autocomplete="off">
+    <p id="guestbook-status"></p>
+    <button id="send-btn">send</button>
+
+
+    <!-- ============================================================ -->
+    <!-- DRAWBOX MODULE                                                -->
+    <!-- this is divided into a few parts so you have more             -->
+     <!-- control over how you want it set up                          -->
+    <!-- ============================================================ -->
+
+    <!-- colour palette -->
+    <div id="swatch-grid"></div>
+
+    <!-- rgb sliders -->
+    <div>
+        <label>R</label>
+        <input id="r-slider" type="range" min="0" max="255" value="0">
+        <span id="r-val">0</span>
+    </div>
+    <div>
+        <label>G</label>
+        <input id="g-slider" type="range" min="0" max="255" value="0">
+        <span id="g-val">0</span>
+    </div>
+    <div>
+        <label>B</label>
+        <input id="b-slider" type="range" min="0" max="255" value="0">
+        <span id="b-val">0</span>
+    </div>
+
+    <!-- colour preview -->
+    <div id="colour-preview"></div>
+
+    <!-- the canvas -->
+    <canvas id="draw-canvas" width="400" height="400"></canvas>
+
+    <!-- drawing tools -->
+    <input id="draw-size" type="range" min="1" max="30" value="5">
+    <button id="draw-eraser">Eraser</button>
+    <button id="draw-clear">Clear</button>
+
+    <!-- submission stuff -->
+    <input id="draw-author" type="text" placeholder="your name (optional)">
+    <p id="draw-status"></p>
+    <button id="draw-submit">Submit Drawing</button>
+
+    <!-- gallery -->
+    <div id="drawings-grid"></div>
+
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS                                                       -->
+    <!-- config.js HAS to be called first!!!!                          -->
+    <!-- ============================================================ -->
+    <script src="config.js"></script>
+
+    <!-- add only the modules you are using, delete any other one -->
+    <script src="blog/blog.js"></script>
+    <script src="guestbook/guestbook.js"></script>
+    <script src="drawbox/drawbox.js"></script>
+
+    <!-- this will start each module, so on any page you want to use them -->
+    <!-- you ahve to actually initialize them -->
+    <script>
+        initBlog();
+        initGuestbook();
+        initDrawbox();
+    </script>
+
+</body>
+
+</html>
